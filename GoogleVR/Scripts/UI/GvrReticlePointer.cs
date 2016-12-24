@@ -20,7 +20,7 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class GvrReticlePointer : GvrBasePointer {
   /// Number of segments making the reticle circle.
-  public int reticleSegments = 20;
+	public int reticleSegments = 20;
 
   /// Growth speed multiplier for the reticle/
   public float reticleGrowthSpeed = 8.0f;
@@ -63,6 +63,21 @@ public class GvrReticlePointer : GvrBasePointer {
 
   void Update() {
     UpdateDiameters();
+  }
+
+  public void SetReticleSegments(int segments) {
+    reticleSegments = segments;
+    CreateReticleVertices();
+  }
+
+  public void SetReticleColor(Color color) {
+    materialComp.color = color;
+  }
+
+  public void ResetReticleDefaults() {
+	reticleSegments = 20;
+	CreateReticleVertices();
+	materialComp.color = Color.white;
   }
 
   /// This is called when the 'BaseInputModule' system should be enabled.
